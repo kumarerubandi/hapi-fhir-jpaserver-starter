@@ -1,16 +1,16 @@
 spring:
   datasource:
-    url: 'jdbc:h2:file:./target/database/h2'
-    username: sa
-    password: null
-    driverClassName: org.h2.Driver
+    url: ${JDBC_MYSQL_URL}
+    username: ${FHIR_MYSQL_USER}
+    password: ${FHIR_MYSQL_PWD}
+    driverClassName: com.mysql.jdbc.Driver
     max-active: 15
   profiles:
     ### This is the FHIR version. Choose between, dstu2, dstu3, r4 or r5
     active: r4
   jpa:
     properties:
-      hibernate.dialect: org.hibernate.dialect.H2Dialect
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
       hibernate.search.model_mapping: ca.uhn.fhir.jpa.search.LuceneSearchMappingFactory
       hibernate.format_sql: false
       hibernate.show_sql: false
